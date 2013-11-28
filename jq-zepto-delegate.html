@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<style>
+    div {
+      padding: 20px;
+    }
+
+    div div {
+      border: 1px solid #fff;
+    }
+
+    .a, .b {
+      width: 100px;
+      background: blue;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .pink {
+      background: pink;
+    }
+</style>
+</head>
+<body>
+  <div class='a'>
+    <div>
+    </div>
+  </div>
+  <br>
+  <div class='b'>
+    <div>
+    </div>
+  </div>
+  <script>
+    (function($){
+      $('.a').on('click', 'div',function(event){
+        event.stopPropagation()
+        $(this).closest('div').toggleClass('pink')
+      })
+      // .on('click', function(event){
+      //   event.stopPropagation()
+      //   $(this).closest('div').toggleClass('red')
+      // })
+    })(Zepto);
+
+    (function($){
+      $('.b').on('click', 'div','hahaha', function(event){
+        event.stopPropagation()
+        $(this).closest('div').toggleClass('pink')
+      })
+      // .on('click', function(event){
+      //   event.stopPropagation()
+      //   $(this).closest('div').toggleClass('red')
+      // })
+    })(jQuery);
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://www.kirupa.com/html5/examples/getting_x_y_position.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="chrome-extension://mfjanagceblmeijonojeojjmjfiokgeo/domify.js"></script>
+<meta content="en-us" http-equiv="Content-Language">
+
+<title>Items</title>
+<style type="text/css">
+#mainMenu {
+	list-style-type: none;
+}
+body {
+	padding: 0px;
+	margin: 0px;
+}
+#container {
+	padding: 24px;
+	margin: 24px;
+	border: 50px #ccc solid;
+	left: 10px;
+	top: 200px;
+	position: absolute;
+}
+body {
+	padding: 15px;
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+p {
+	width: 650px;
+	line-height: 24px;
+}
+h1 {
+	color: #265482;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Getting the Exact Position of an Element</h1>
+<div id="container" style="text-align: center">
+	<img id="imageLocation" alt="nyan cat" src="./position_x_y_files/img5C.gif">
+<br>&nbsp;<br>( taken from 	
+	<a href="http://www.prguitarman.com/index.php?id=348" target="_blank">
+	PRGuitarman</a> )</div>
+ <script src="jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+
+
+this.addEventListener("load", doSomething, true);
+
+function doSomething(e) {
+    var myElement = document.querySelector("#imageLocation");     
+    var position = getPosition(myElement);
+    console.log("The image is located at: " + position.x + ", " + position.y);
+    console.log($(myElement).offset());
+    console.log($(myElement).position());
+}
+
+function getPosition(element) {
+    var xPosition = 0;
+    var yPosition = 0;
+    
+    while(element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+}</script>
+
+<p>In this example, we are trying to get the position of the image below - an 
+image that is centered inside a container that has a pixel and margin value of 25 pixels; 
+has a 100px border; and is absolutely positioned at 10, 200. The body has a 
+padding of 15 pixels applied as well.</p>
+
+
+
+
+</body></html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MutationObserver</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+</head>
+<body>
+    <i id="c">eeeeeeeeeeeeeeeeeeeeeee</i>
+    <div id="ua"></div>
+    <script>
+        $(function(){
+            $('#ua').html(navigator.userAgent);
+            try{
+                var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+                var target = $('#c')[0];
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        console.log(mutation.type);
+                    });
+                    alert('MutationObserver supported');    
+                });
+                var config = { attributes: true, childList: true, characterData: true }
+                observer.observe(target, config);
+                $('#c').html('<i>sssssssssssssssssssssssss</i>');
+                // console.log($(html))
+            }catch(e){
+                alert('MutationObserver not supported');
+            }
+
+            var ev = false;
+            var element = document.createElement('i');
+            var child = document.createElement('em');
+            element.addEventListener('DOMSubtreeModified',function(){
+                ev = true;
+            },false);
+            element.appendChild(child);
+            // element.innerHTML = ''; //动态创建的dom，innerHTML=''不会触发DOMSubtreeModified
+            
+            element = null;
+            if(ev){
+                alert('DOMSubtreeModified supported')
+            }else{
+                alert('DOMSubtreeModified not supported')
+            }
+            
+            var ev2 = false;
+            $('#c').bind('DOMSubtreeModified',function(){
+                ev2 = true;
+            })
+            $('#c').html('');
+
+            if(ev2){
+                alert('DOMSubtreeModified2 supported')
+            }else{
+                alert('DOMSubtreeModified2 not supported')
+            }
+        })
+    </script>
+</body>
+</html>

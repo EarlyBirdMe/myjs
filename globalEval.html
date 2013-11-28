@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>globalEval</title>
+</head>
+<body>
+    <section>http://whattheheadsaid.com/2011/08/global-eval-with-a-result-in-internet-explorer</section>
+    <script>
+        var globalEval = (function() {
+        var isIndirectEvalGlobal = (function(original, Object) {
+        try {
+              // Does `Object` resolve to a local variable, or to a global, built-in `Object`,
+              // reference to which we passed as a first argument?
+              return window.eval('Object') === original;
+            }
+            catch(err) {
+              // if indirect eval errors out (as allowed per ES3), then just bail out with `false`
+              return false;
+            }
+        })(Object, 123);
+         
+          if (isIndirectEvalGlobal) {
+            // if indirect eval executes code globally, use it
+            return function(expression) {
+              return window.eval(expression);
+            };
+          }
+          else if ("execScript" in window) {
+            // if `window.execScript` exists, use it along with `eval` to obtain a result
+            return function(expression) {
+              globalEval.___inputExpression___ = expression;
+              window.execScript("globalEval.___lastInputResult___ = eval(globalEval.___inputExpression___)");
+              return globalEval.___lastInputResult___;    
+            };
+          }
+         
+          // otherwise, globalEval is `undefined` since nothing is returned
+        })();
+         
+        // and a simple test, inspired by kangax's detection method:
+        alert((function (Object) {
+            return globalEval("Object === 123"); // result is false
+        })(123));
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery children</title>
+    <script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+    <section>
+        <div class="container c a b d">
+          <div class="goodbye">
+            Goodbye
+            <div class="hello">Hello</div>
+            <script type="text/javascript">
+                console.log($.version);
+            </script>
+          </div>
+        </div>        
+    </section>
+    <script>
+        $(function(){
+            console.log($('.container').children());
+            $('.container').addClass('added can')
+        })
+    </script>
+</body>
+</html>

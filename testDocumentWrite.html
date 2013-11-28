@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        navigator.a = 1;
+        setTimeout( function(){
+            document.write( "blank" );
+            console.log( "window: " + ( window.window === window ) );
+            console.log( "navigator: " + ( window.navigator === navigator ) );
+            console.log( "document: " + ( window.document === document ) );
+            console.log( "location: " + ( window.location === location ) );
+            console.log( "String: " + ( window.String === String ) );
+        }, 1 );
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="qiyi_lib/sea1.2.js"></script>
+    <script src="underscore.js"></script>
+    <script src="jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div id="p1" data-widget-click="con">
+    <a href="" class="a1" j-delegate="cl">clickme</a>
+    <a href="" class="a1" j-delegate="cl">clickme</a>
+    <a href="" class="a1" j-delegate="cl">clickme</a>
+    <a href="" class="a1" j-delegate="cl">clickme</a>
+    <a href="" class="a1" j-delegate="cl">clickme</a>
+    <a href="" class="a1" j-delegate="cl" id="one">clickme one</a>
+    <a href="" class="a2" j-delegate="cl">clickme</a>
+    <a href="#" class="a3">clickme</a>
+</div>
+<div data-widget-click="con">
+    <a href="" class="a2" j-delegate="cl">clickme</a>
+</div>
+<div>
+
+    <!-- <iframe src="http://www.iqiyi.com"></iframe> -->
+</div>
+
+<div id="bg" style="height:200px;display: none;"></div>
+<script>/*
+ Q.$('.a1').on('click',function(e){
+ e.preventDefault();
+ console.log('aaa')
+ })*/
+console.log($('[data-widget-click="con"]'));
+
+
+/*Q.$('#p1').delegate('cl',function(e){
+    e.event.preventDefault();
+    console.log('heheh')
+})
+$(document).on('click','.a3',function(e){
+    e.preventDefault();
+    console.log('aaa111111');
+})*/
+
+$('a').attr('data-name', 'lhc');
+$(document).on('click', '.a1', function (e) {
+    e.preventDefault();
+    console.log('aaa111111');
+})
+$('.a1').click(function(e){
+    e.preventDefault();
+    alert('sss');
+})
+$('.a1').click(function(e){
+    e.preventDefault();
+    alert('aaaaaaaaaaa');
+})
+
+$('.a3').click(function(){
+    console.error(location.href);
+    console.log(window.location.href);
+    console.error(document.URL);
+    console.error(document.documentURI);
+    console.log(document.baseURI);
+})
+$('#one').one('click', function (e) {
+    e.preventDefault();
+    fun();
+
+    if (true) {
+        function fun1(){
+            console.log('cccc')
+        }
+    } else {
+        function fun() {
+            console.log('sss')
+        }
+    }
+
+    console.log('one')
+})
+console.log($('[data-widget-click]').find('.a2'));
+
+$('#bg').css('backgroundImage','url(http://pic5.qiyipic.com/image/test/20130924/c_200070376_l_605_m9_1440_200.jpg)');
+$('#bg').css('backgroundPosition','center top');
+$('#bg').css('backgroundRepeat','no-repeat');
+// console.log(window.frameElement)
+/*
+ Q.$('#p1').delegate('cl',function(e){
+ e.event.preventDefault();
+ console.log('clllllll');
+ })*/
+
+var t={};
+var s={name:'1hc',love:'lhc'};
+var ss = _.extend(t,s)
+console.log(ss);
+s.smile="zjc";
+    console.log(ss);
+    console.log(s);
+</script>
+</body>
+</html>

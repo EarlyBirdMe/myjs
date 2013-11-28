@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multiline_text_overflow</title>
+    <style>ol {
+    padding: 24px;
+    list-style: decimal inside none;
+    width: 400px;
+}
+.news_item {
+    height: 72px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}</style>
+<script src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+    <ol>
+<li class="news_item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida quam posuere lacus consequat at luctus metus accumsan. Nam nec dolor eu eros molestie feugiat. Sed quis imperdiet metus. Maecenas tincidunt bibendum tortor, sit amet pharetra sem lacinia rutrum. Donec eleifend, velit id pharetra pretium, risus nisi pharetra massa, in suscipit justo ligula quis augue. Quisque magna tellus, ultrices nec consequat ut, sodales vel nisi. Praesent fringilla ipsum nec orci sollicitudin feugiat.</li>
+<li class="news_item">Aenean dignissim tempor tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut sit amet nisl ac nunc placerat scelerisque. Curabitur aliquam varius consectetur. Nullam eu nisi at odio aliquet congue. Proin eu imperdiet ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lacinia ullamcorper nisi congue suscipit. Maecenas nec ultrices enim. Proin id elit et nulla commodo suscipit eget sed purus. Donec erat dui, dictum a egestas vel, fringilla et purus. </li>
+<li class="news_item">Morbi et orci et lorem imperdiet consectetur et id erat. Nullam cursus, orci eget rutrum tristique, felis eros venenatis nisl, a aliquam ipsum sem eu tellus. Aenean a lacus urna. Suspendisse id ante felis, et gravida quam. Nam eu nunc magna. Curabitur ut felis magna, sed sodales nibh. Aliquam ut facilisis augue. In dignissim ligula ut erat mollis a consectetur lectus consectetur.</li>
+<li class="news_item">Pellentesque elit odio, varius sit amet cursus sit amet, eleifend nec libero. Curabitur sagittis viverra lacinia. Morbi mattis arcu at metus imperdiet et varius nisi dictum. Vivamus faucibus felis eu neque rutrum ultricies. Etiam lectus nulla, ultrices ac gravida et, pharetra non velit. Proin a sagittis dolor. </li>
+<li class="news_item">Sed libero libero, placerat pretium tincidunt a, imperdiet at nisl. Vestibulum gravida porta tellus, id aliquam dui adipiscing quis. Fusce elementum viverra mi sagittis consectetur. Duis sed mi ut lorem fringilla sagittis iaculis eget nisi. In risus velit, placerat vitae luctus sit amet, euismod ut turpis. Pellentesque ornare, magna sed gravida porta, turpis lorem fermentum arcu, eu aliquam neque dui in erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; </li>
+<li class="news_item">Aliquam adipiscing venenatis nulla commodo tincidunt. Suspendisse potenti. Vivamus sodales nibh non nibh commodo a bibendum arcu venenatis. Praesent nec elit a sem dictum sollicitudin. Vivamus metus dolor, auctor nec gravida non, cursus a ante. Proin et lacus eget nunc aliquam tempor. Nullam dignissim hendrerit condimentum. Donec vulputate egestas nisi, non adipiscing justo pulvinar nec.</li>
+</ol>
+    <script>
+    function multiline_text_overflow(elem) {
+    $(elem).each(function(i){
+        $(this).wrapInner("<span class='mlto'></span>");
+        var p=$(this).find(".mlto");
+        var divh = $(this).height();
+        while($(p).outerHeight()>divh) {
+            $(p).text(function (index, text) {
+                return text.replace(/\W*\s(\S)*$/, '...');
+            });
+        }
+    })
+}
+
+multiline_text_overflow(".news_item");
+</script>
+</body>
+</html>

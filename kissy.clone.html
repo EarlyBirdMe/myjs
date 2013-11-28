@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>kissy</title>
+    <script src="jquery/jquery-1.10.2.js"></script>
+    <script src="kissy.js"></script>
+</head>
+<body>
+<script>
+    $(function(){
+        console.log(KISSY);
+        console.log(KISSY.clone({name:'lhc',rel:'love'},function(item){
+            console.log(item);
+        }))
+    })
+</script>
+</body>
+</html>

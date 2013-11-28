@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>show demo</title>
+    <style>
+        p { background:yellow; }
+    </style>
+    <script src="jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+<button>Show it</button>
+<p style="display: none">Hello  2</p>
+<script>
+    $("button").click(function () {
+        $("p").show("linear");
+    });
+</script>
+
+</body>
+</html>

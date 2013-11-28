@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试ajax</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            //:myphp/ajax.php 实际请求 http://localhost/myjs/myphp/ajax.php
+            $.get('/myphp/ajax.php',function(data){
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+</html>

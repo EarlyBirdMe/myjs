@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery anim</title>
+    <script src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+    <div id="clickme">
+      Click here
+    </div>
+    <img id="book" src="./assets/hyuna.png" alt="" style="position: relative; left: 10px;" />
+    <script type="text/javascript">
+        $(function(){
+            $('#clickme').click(function() {
+              // $('#book').animate({
+              //   opacity: 0.25,
+              //   left: '+=50',
+              //   height: 'toggle'
+              // }, 5000, function() {
+              //   // Animation complete.
+              // });
+                $('#clickme').css('text-align', 'center')
+            });
+        })
+    </script>
+</body>
+</html>

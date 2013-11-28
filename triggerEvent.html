@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>trigger event</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            $(window).resize(function(){
+                alert('resize')
+            })
+            var trigger = document.createEvent('Event');
+            trigger.initEvent('resize',true,true);
+            window.dispatchEvent(trigger);
+        })
+    </script>
+</body>
+</html>

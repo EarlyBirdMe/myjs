@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var input = $('#user');
+            input.keypress(function(){
+                console.log('sssssssss')
+            })
+            input[0].select();
+            input[0].focus();
+        })
+    </script>
+</head>
+<body>
+    <section>
+        <input type="text" name="user" id="user">
+    </section>
+</body>
+</html>

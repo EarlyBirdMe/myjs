@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>foramt</title>
+    <script src="tangram-compatible.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var logPattern = new baidu.string("[#{time}] [#{module}] #{content}<br/>");
+        var log = {
+            time : (new Date()).toLocaleTimeString(),
+            module: 'module',
+            content: 'content'
+        };
+        console.log(logPattern.format(log));
+    </script>
+</body>
+</html>

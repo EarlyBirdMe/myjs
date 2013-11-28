@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .p {
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #666;
+            height:100px;
+            width:100px;
+            overflow: auto;
+        }
+    </style>
+    <script src="jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+<p class="p">Hello财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财
+    付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票财付通彩票</p>
+
+<p></p>
+<ul>
+    <li>foo</li>
+    <li>bar</li>
+</ul>
+<script>
+    var p = $("p:first");
+    $("p:last").text("outerWidth:" + p.outerWidth() + " , outerWidth(true):" + p.outerWidth(true) + ", innerWidth: " + p.innerWidth() + ", width: " + p.width());
+    console.log(p.offset());
+    $("li").each(function (index) {
+        console.log(index + ": " + $(this).text());
+        return false;
+    });
+
+   console.log('window width',$(window).width());
+    $('p:first').css('background-color', 'red');
+</script>
+
+</body>
+</html>

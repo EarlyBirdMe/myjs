@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>private 模拟</title>
+</head>
+<body>
+
+代码运行输出已打至 console 控制台，请打开 firebug 等带控制台的软件查看。
+
+<script type="text/javascript">
+var klass = createClass({
+    constructor: function(){
+        console.log(this.message); // hello
+    },
+
+    publics: {
+        message: "world",
+        message2: "javascript",
+        sayHello: function(){
+            return this.message;
+        },
+        sayJavaScript: function(){
+            return this.message2;
+        },
+        sayYouCantSeeMe: function(){
+            return this.message3;
+        },
+        sayInteresting: function(msg){
+            return this.interesting();
+        }
+    },
+
+    privates: {
+        message: "hello",
+        message3: "you cant see me",
+        interesting: function(){
+            return "interesting";
+        }
+    }
+});
+
+var instance = new klass();
+
+// case0  在 constructor 里直接访问 message，得到的是 privates 里的 message 值
+
+// case1
+// message 同时存在于 publics 和 privates 中，外部访问得到 world
+// 而内部访问得到 hello
+console.log("instance.message => ", instance.message);
+console.log("instance.sayHello() => ", instance.sayHello());
+
+// case2
+// message2 只在 publics 中，不管是外部或内部访问，都得到 javascript
+console.log("instance.message2 => ", instance.message2);
+console.log("instance.sayJavaScript() => ", instance.sayJavaScript());
+
+// case3
+// message3 被定义为私有属性，外部访问不到，得到 undefined
+// 而内部可以正常访问，得到 you cant see me
+console.log("instance.message3 => ", instance.message3);
+console.log("instance.sayYouCantSeeMe() => ", instance.sayYouCantSeeMe());
+
+// case4
+// 同样的，interesting 是私有方法，只有内部才能访问，这里得到 undefined
+// 这里得到 interesting
+console.log("instance.interesting => ", instance.interesting);
+console.log("instance.sayInteresting() => ", instance.sayInteresting());
+
+
+// 下面是 createClass 的实现
+function createClass(conf){
+    var fn, prototype, privates;
+    publics = conf.publics;
+    privates = conf.privates || new Object();
+    fn = function(fn){
+        return function(){
+            return fn.apply(privates, arguments);
+        };
+    }(conf.constructor || new Function());
+    prototype = fn.prototype;
+
+    for(var publicName in publics){
+        if(!publics.hasOwnProperty(publicName))
+            continue;
+        if(typeof publics[publicName] == "function")
+            prototype[publicName] = function(publicName){
+                return function(){
+                    return publics[publicName].apply(privates, arguments);
+                }
+            }(publicName);
+        else prototype[publicName] = publics[publicName];
+
+        if(!privates[publicName])
+            privates[publicName] = prototype[publicName];
+    }
+
+    return fn;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wp8测试ie10和nokia浏览器touch事件兼容性</title>
+    <style>
+        .container {
+            height:500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="c1"></div>
+        <div id="c2"></div>
+        <div id="c3"></div>
+        <div id="c4"></div>
+    </div>
+    <script type="text/javascript">
+    $(function(){
+        $(document).bind('mousemove',function(e){
+            $('div.container').find('#c1').html('mousemove');
+            e.preventDefault();
+        })
+        $(document).bind('touchstart',function(e){
+            $('div.container').find('#c2').html('touchstart');
+            e.preventDefault();
+        })
+        $(document).bind('MSPointerDown',function(e){
+            $('div.container').find('#c3').html('MSPointerDown');
+            e.preventDefault();
+        })
+        $(document).bind('MSPointerMove',function(e){
+            $('div.container').find('#c4').html('MSPointerMove');
+            e.preventDefault();
+        })
+        $(document).bind('MSPointerUp',function(e){
+            $('div.container').find('#c4').html('MSPointerUp');
+            e.preventDefault();
+        })
+    })
+    </script>
+</body>
+</html>

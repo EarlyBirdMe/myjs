@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flowjs demo</title>
+    <style>
+        ol, ul {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+            list-style: none;
+        }
+        .result{
+            width:140px;
+            border: 1px solid #E2E2E2;
+            background-color: #FFF;
+        }
+        .result li:hover{
+            background-color:#FEF;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" src="http://static.iqiyi.com/js/lib/sea1.2.js">
+    </script>
+</head>
+<body>
+    <input type="text" id="suggest">
+    <div id="result" class="result" style="display: none;"></div>
+    <script type="text/javascript">
+        //suggest
+        var db = {
+                    a : [
+                        {name:'a1'},
+                        {name:'a2'},
+                        {name:'a3'},
+                        {name:'a4'},
+                        {name:'a5'},
+                        {name:'a10'},
+                        {name:'a11'}
+                    ],
+                    a1 : [
+                        {name:'a1'},
+                        {name:'a10'},
+                        {name:'a11'}
+                    ],
+                    a11 : [
+                        {name:'a11'}
+                    ]
+                }
+        Q.ready(function(){
+            var sug = Q.$('#suggest');
+            var res = Q.$('#result');
+            var tpl ='<ul>{{#list}}<li><a href="#">{{name}}</a>{{/list}}</li></ul>';
+            sug.on('keyup',function(){
+                var val = sug.value();
+                if(db[val]){
+                    res.show();
+                    Q.$('#result').html(Q.plugins.Mustache.render(tpl,{list: db[val]}));
+                }else{
+                    res.hide();
+                    Q.$('#result').html('');
+                }
+            })
+        })
+    </script>
+</body>
+</html>

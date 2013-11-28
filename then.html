@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+ 
+<button>Filter Resolve</button>
+<p></p>
+ 
+<script>
+var filterResolve = function() {
+ 
+  var defer = $.Deferred(),
+      filtered = defer.then(function( value ) {
+        return value * 2;
+      }).then(function(value){
+                  return value +2;
+              });
+
+  defer.resolve( 5 );
+  filtered.done(function( value ) {
+    $( "p" ).html( value );
+  });
+};
+ 
+$( "button" ).on( "click", filterResolve );
+</script>
+ 
+</body>
+</html>

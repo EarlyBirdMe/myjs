@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试pagehide和unload的调用情况</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <h2>至于pageshow和load同理</h2>
+    <a href="http://www.iqiyi.com" id="A">点击一个链接到新页面</a>
+    <h2 id="ua"></h2>
+    <script type="text/javascript">
+        $(function(){
+            $('#ua').html(navigator.userAgent);
+            function pageHidden(evt)
+            {   
+                alert('pageHidden');
+            }
+            function unload(evt)
+            {
+                alert('unload');
+            }
+
+            function beforeunload(){
+                alert('beforeunload');
+            }
+            $(window).bind("pagehide", pageHidden); 
+            $(window).bind("beforeunload", beforeunload); 
+            $(window).bind("unload", unload); 
+        })
+    </script>
+</body>
+</html>

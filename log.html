@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>异步请求顺序</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(function(){
+            window.$log = function(message) {
+                var x = new Image;
+                x.src = "http://10.10.131.151/remotelog/write.php?message=" + encodeURIComponent(message) + "&=" + new Date().getTime();
+            }
+            var sNew = document.createElement("script");
+            sNew.async = true;
+            sNew.src = "http://10.1.30.43:5271/target/target-script-min.js#anonymous";
+            var s0 = document.getElementsByTagName('script')[0];
+            s0.parentNode.insertBefore(sNew, s0);
+
+
+            setTimeout(function(){$log('1')},1000)
+            setTimeout(function(){$log('2312')},2)
+            setTimeout(function(){$log('213221')},3)
+            setTimeout(function(){$log('1213213323')},4)
+            setTimeout(function(){$log('13232333333333333')},55)
+            setTimeout(function(){$log('133333333333333333333')},6)
+            setTimeout(function(){$log('1333333333333333333333333')},7)
+            setTimeout(function(){$log('13333333333333333333333333333')},8)
+            setTimeout(function(){$log('13333333333333333333333333333333333333')},9)
+        })
+    </script>    
+</body>
+</html>

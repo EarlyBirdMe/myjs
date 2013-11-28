@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .wrapper{
+        }
+        .wrapper video{
+            margin: 0 auto;
+            width: 100%;
+            height:100%;
+        }    
+    </style>
+   <script src="jquery-1.4.2.js"></script>
+</head>
+<body>
+    <section class="wrapper">
+      <video id="video" type="video/mp4" class="pvideo videos" src="http://123.125.118.80/videos/lifeMicroVideo/20121220/f22e1a6e3309d28fccc71eff87336810.mp4?key=6cc405f4fa3f2336" style="display: block;">
+    </video>  
+    </section>
+    
+    <script type="text/javascript">
+            // alert(navigator.userAgent)
+            // var video = $('#video')[0];
+            // video.addEventListener('canplay',function(){
+            //     video.play();
+            // })
+            // video.addEventListener('progress',function(){
+            //     console.log(video.networkState)
+            // })
+            // video.addEventListener('suspend',function(){
+            //     console.log('suspend',video.networkState)
+            // })
+        console.log($('#video').attr('type'));
+    </script>
+</body>
+</html>

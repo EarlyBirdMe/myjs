@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+
+<html lang="en-GB">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="_styles.css" media="screen">
+	
+	<title>Sexy event handling with handleEvent | The CSS Ninja</title>
+
+</head>
+<body>
+	
+	
+	<div class="wrapper" id="content">
+		<h1>An example using handleEvent, view source and then hi5</h1>
+		
+		<p><button id="btn" class="button">Click or touch me</button> <button id="btn2" class="button">This button will override handleEvent</button> <button id="btn3" class="button">Revert handleEvent back to default behaviour</button></p>
+		
+		<p>Simple example:</p>
+<pre style='color:#d1d1d1;background:#000000; padding: 20px; border-bottom-right-radius: 20px;'><span style='color:#e66170; font-weight:bold; '>var</span> elem <span style='color:#d2cd86; '>=</span> document<span style='color:#d2cd86; '>.</span>getElementById<span style='color:#d2cd86; '>(</span><span style='color:#02d045; '>"</span><span style='color:#00c4c4; '>btn</span><span style='color:#02d045; '>"</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>
+    obj <span style='color:#d2cd86; '>=</span> <span style='color:#b060b0; '>{</span>
+        handleEvent<span style='color:#b060b0; '>:</span> <span style='color:#e66170; font-weight:bold; '>function</span><span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+            alert<span style='color:#d2cd86; '>(</span><span style='color:#e66170; font-weight:bold; '>this</span><span style='color:#d2cd86; '>.</span>dude<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+        <span style='color:#b060b0; '>}</span><span style='color:#d2cd86; '>,</span>
+        dude<span style='color:#b060b0; '>:</span> <span style='color:#02d045; '>"</span><span style='color:#00c4c4; '>holla</span><span style='color:#02d045; '>"</span>
+    <span style='color:#b060b0; '>}</span><span style='color:#b060b0; '>;</span>
+
+elem<span style='color:#d2cd86; '>.</span>addEventListener<span style='color:#d2cd86; '>(</span><span style='color:#02d045; '>"</span><span style='color:#00c4c4; '>click</span><span style='color:#02d045; '>"</span><span style='color:#d2cd86; '>,</span> obj<span style='color:#d2cd86; '>,</span> <span style='color:#0f4d75; '>false</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+</pre>
+	</div>
+	
+	<script>
+		(function(){
+			var obj = {
+				init: function() {
+					// Isn't beautiful just passing "this" \o/
+					on(document.getElementById("btn"), "click", this, false);
+					on(document.getElementById("btn"), "contextmenu", this, false);
+					on(document.getElementById("btn"), "touchstart", this, false);
+					on(document.getElementById("btn2"), "click", this, false);
+					on(document.getElementById("btn3"), "click", this, false);
+				},
+				handleEvent: function(e) {
+					var evt = e || window.event,
+						t = evt.target || evt.srcElement;
+					
+					switch(evt.type) {
+						case "click":
+							if (t.id === "btn") {
+								this.button();
+							} else if(t.id === "btn2") {
+								this.changeHandleEvent(evt);
+							} else {
+								this.revertHandleEvent();
+							}
+							break;
+						case "touchstart":
+							this.button();
+							break;
+						case "contextmenu":
+							this.other(evt);
+							break;
+					}
+				},
+				dude: "holla",
+				button: function() {
+					alert(this.dude);
+				},
+				changeHandleEvent: function(evt) {
+					this._handleEvent = this.handleEvent;
+					// Change the the handleEvent method without needing to remove and re-attach the event(s)
+					this.handleEvent = function(e) {
+						var evt = e || window.event,
+							t = evt.target || evt.srcElement;
+						
+						if (t.id === "btn") {
+							document
+								.getElementById("content")
+								.appendChild(
+									document
+										.createTextNode("Change the action for all events ")
+								);
+						} else if(t.id === "btn3") {
+							this.revertHandleEvent();
+						}
+						
+					}
+					alert("Totally just changed the event handling");
+				},
+				revertHandleEvent: function() {
+					if(!this._handleEvent) return; // If handleEvent hasn't been changed don't set it to null
+					this.handleEvent = this._handleEvent;
+					delete this._handleEvent;
+					alert("Original behaviour has been reverted!");
+				},
+				other: function(e) {
+					alert(e.type);
+				}
+			};
+
+
+			// fn arg can be an object or a function, thanks to handleEvent
+			function on(el, evt, fn, bubble) {
+				if("addEventListener" in el) {
+					// BBOS6 doesn't support handleEvent, catch and polyfill
+					try {
+						el.addEventListener(evt, fn, bubble);
+					} catch(e) {
+						if(typeof fn == "object" && fn.handleEvent) {
+							el.addEventListener(evt, function(e){
+								// Bind fn as this and set first arg as event object
+								fn.handleEvent.call(fn,e);
+							}, bubble);
+						} else {
+							throw e;
+						}
+					}
+				} else if("attachEvent" in el) {
+					// check if the callback is an object and contains handleEvent
+					if(typeof fn == "object" && fn.handleEvent) {
+						el.attachEvent("on" + evt, function(){
+							// Bind fn as this
+							fn.handleEvent.call(fn);
+						});      
+					} else {
+						el.attachEvent("on" + evt, fn);
+					}
+				}
+			}
+
+			obj.init();
+		})();
+	</script>
+	
+</body>
+</html>

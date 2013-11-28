@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resize</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <div id="ua"></div>
+    <script>
+        $(function(){
+            $('#ua').html(navigator.userAgent);
+            $(window).resize(function(){
+                console.log('resize');
+            })
+            $(window).resize();
+        })
+    </script>
+</body>
+</html>

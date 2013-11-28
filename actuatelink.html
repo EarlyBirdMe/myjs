@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+    <section>
+        <a href="http://www.iqiyi.com/" id="bingLink">iqiyi</a>        
+    </section>
+    <script>
+        function actuateLink(link)
+        {
+           var allowDefaultAction = true;
+              
+           if (link.click)
+           {
+              link.click();
+              return;
+           }
+           else if (document.createEvent)
+           {
+              var e = document.createEvent('MouseEvents');
+              e.initEvent(
+                 'click'     // event type
+                 ,true      // can bubble?
+                 ,true      // cancelable?
+              );
+              allowDefaultAction = link.dispatchEvent(e);           
+           }
+                 
+           if (allowDefaultAction)       
+           {
+              var f = document.createElement('form');
+              f.action = link.href;
+              document.body.appendChild(f);
+              f.submit();
+           }
+        }
+        $('#bingLink').click(function(e){
+            e.preventDefault();
+            actuateLink(document.getElementById('bingLink'));
+        })
+    </script>
+</body>
+</html>

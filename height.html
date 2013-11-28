@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  /*body { background:yellow; }*/
+  button { font-size:12px; margin:2px; }
+  p { width:150px; border:1px red solid; height:10023px; padding:12px 32px;}
+  div { color:red; font-weight:bold; }
+  </style>
+  <script src="jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+  <button id="getp">Get Paragraph Height</button>
+  <button id="getd">Get Document Height</button>
+  <button id="getw">Get Window Height</button>
+ 
+  <div>&nbsp;</div>
+  <p>
+    Sample paragraph to test height
+  </p>
+<script>
+    function showHeight(ele, h) {
+      $("div").text("The height for the " + ele +
+                    " is " + h + "px.");
+    }
+    $("#getp").click(function () {
+      showHeight("paragraph", $("p").height());
+    });
+    $("#getd").click(function () {
+      showHeight("document", $(document).height());
+    });
+    $("#getw").click(function () {
+      showHeight("window", $(window).height());
+    });
+ $(function(){
+  console.log($(window).height());
+  console.log($(document).height());
+ });
+ [1,2,3,4].forEach(function(item){
+      console.log(item);
+ });
+ console.log('exec');
+</script>
+ 
+</body>
+</html>

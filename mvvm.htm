@@ -1,0 +1,28 @@
+
+<!-- saved from url=(0025)http://shaofei.name/mvvm/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><script type="text/javascript" src="chrome-extension://mfjanagceblmeijonojeojjmjfiokgeo/domify.js"></script><script src="./mvvm_files/EventSource.js"></script>
+<script src="./mvvm_files/ViewModel.js"></script>
+<script src="./mvvm_files/HTMLTemplate.js"></script>
+
+<script type="text/xhtml-template" id="t">
+    <div style="background:rgb(${r},${g},${b});width:100px;height:100px;"></div>
+    <input value="${r|input}" type="text"/>
+    <input value="${g|input}" />
+    <input value="${b|input}" />
+</script>
+
+</head><body><div id="container">
+
+    <div style="background:rgb(255,24,255);width:100px;height:100px;"></div>
+    <input value="255" type="text">
+    <input value="24">
+    <input value="255">
+</div>
+
+<script type="text/javascript">
+    var obj = {r:255,g:200,b:255};
+    var vm = new ViewModel(obj);
+    var tmpl = new HTMLTemplate(document.querySelector("#t").innerHTML);
+    var fragment = tmpl.apply(vm);
+    document.querySelector("#container").appendChild(fragment);
+</script></body></html>

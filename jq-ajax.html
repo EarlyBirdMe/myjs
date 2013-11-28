@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="http://static.iqiyi.com/js/lib/sea1.2.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var a = 1;
+    $.ajax({
+        type: "GET",
+        url: "test.js",
+        dataType: "text"
+    });
+    $.ajax({
+        type: "GET",
+        url: "test.js",
+        dataType: "script"
+    });
+Q.http.json('http://cache.video.qiyi.com/plst/200007306/',{
+    data:{
+     varname:'plst'
+    },
+    onsuccess:function(data){
+        console.log(data)
+    }
+})
+/*$.ajax({
+    url:'http://www.reddit.com/.json?limit=1&&jsonp=?',
+    type:'GET',
+    dataType:'jsonp',
+    success:function(data){
+        console.log(data);
+    }
+})
+$.ajax({
+    url:'http://www.reddit.com/.json?limit=1',
+    type:'GET',
+    crossDomain:true,
+    dataType:'json',
+    success:function(data){
+        console.log(data);
+    }
+})*/
+</script>
+<script>
+console.log(a);
+
+</script>
+<script>
+    var MILoad = function(b, c) {
+        var a = document.createElement('script');
+        if (c) {
+            a.onload = a.onerror = a.onreadystatechange = function() {
+                var s = this.readyState;
+                if (!s || (s && (s == 'loaded' || s == 'complete'))) {
+                    c(b);
+                }
+                a.parentNode.removeChild(a);
+            }
+        }
+        a.setAttribute('type', 'text/javascript');
+        a.setAttribute('charset', 'utf-8');
+        a.setAttribute('src', b);
+        document.getElementsByTagName('head')[0].appendChild(a)
+    };
+    $(function(){
+        MILoad('http://js2.t.sinajs.cn/t5/home/js/page/base_other.js?version=075705bc354df9a4',function(data){
+                console.log(data)
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title" data-title-widget="title" data-title-name="哈哈 我是title元素的属性值" title="zjc" lang="zh">title获取的到title元素测试</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js">
+    </script>
+</head>
+<body>
+    <div id="result" style="border:1px solid #ccc;height:1000px;"></div>
+    <script>
+        $('#result').append('通过原生js获取title元素'+ document.getElementsByTagName('title')+"</br>");
+        $('#result').append('通过原生js获取title元素'+ document.getElementsByTagName('title').id+"</br>");
+        $('#result').append('通过自定义属性获取:  '+ $('[data-title-widget=title]') + "<br/>");
+        $('#result').append('通过自定义属性获取:  '+ $('[data-title-widget=title]').attr('lang')+"<br/>");
+         $('#result').append('通过自定义属性获取:  '+ $('[data-title-widget=title]').attr('title'));
+    </script>
+</body>
+</html>

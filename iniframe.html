@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>inframe</title>
+</head>
+<body>
+<script>
+    function getParentUrl() {
+        var isInIframe = (window != window.top),
+                parentUrl = null;
+
+
+        if (isInIframe) {
+            alert('isInIframe');
+            parentUrl = document.referrer;
+        }
+
+        return parentUrl || location.href;
+    }
+
+    //    alert(getParentUrl());
+    alert(parent == window);
+    alert(self == top);
+</script>
+</body>
+</html>
