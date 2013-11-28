@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../reset.css/reste-taobao.css">
+<title>FlexBox</title>
+<style>
+.wrap {
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+}
+.left-wrap, .right-wrap {
+  -webkit-flex: 1;
+}
+.flex-container {
+  width: 95%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  /* 我们第一步要创建一个flex文档流（创建伸缩容器） */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  /* 然后我们定义伸缩流方向，并且可以换行
+   * 记得我们要这样设置:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  -webkit-flex-flow: row wrap;
+   /* 然后我们定义了如何分配伸缩容器的剩余空间 */
+  -webkit-justify-content: flex-start;
+}
+
+.flex-item {
+  background: tomato;
+  margin: 20px 15px;
+  width: 50px;
+  height: 50px;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="left-wrap"></div>
+    <ul class="flex-container">
+      <li class="flex-item">1</li>
+      <li class="flex-item" style="-webkit-order:-1">2</li>
+      <li class="flex-item">3</li>
+      <li class="flex-item">4</li>
+      <li class="flex-item">5</li>
+      <li class="flex-item">6</li>
+      <li class="flex-item">7</li>
+      <li class="flex-item">8</li>
+      <li class="flex-item">9</li>
+      <li class="flex-item">10</li>
+      <li class="flex-item">11</li>
+    </ul>
+    <div class="right-wrap"></div>
+  </div>
+</body>
+</html>

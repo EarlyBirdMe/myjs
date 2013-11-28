@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Domain B</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style type="text/css">
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        background-color: #FFF;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        font-family: Verdana;
+        font-size:12px;
+      }
+    </style>
+  </head>  
+  <body>  
+    <p>
+      <strong>1. Test "change my parent background" without iframe proxy:</strong>
+      <ul>
+        <li><a href="#" onclick="javascript:parent.document.getElementsByTagName('body')[0].style.background = 'red'; return false;">using parent.</a></li>
+        <li><a href="#" onclick="javascript:top.closeModal(); return false;">using top.</a></li>
+      </ul>
+      <em>These tests fail with an error "<span style="color:red;">Permission denied to access property 'getElementsByTagName'</span>" :)</em>
+    </p>
+    
+    <p>      
+      <strong>2. Test "change my parent background" or "close modal" through iframe proxy:</strong>
+      <ul>
+        <li><a href="#" onclick="gotoAction('color:red');">red</a></li>
+        <li><a href="#" onclick="gotoAction('color:blue');">blue</a></li>
+        <li><a href="#" onclick="gotoAction('close');">close modal</a></li>
+      </ul>
+      
+      <iframe src="http://img.tomsguide.com/demo/proxyA.html" id="iframeProxy" width="0" height="0"></iframe> this little box is my iframe proxy :)  
+      
+      <script type="text/javascript">
+        
+        // Here you can call this function to make the job by the proxy
+        function gotoAction(action) {
+        
+          var iframeProxy = document.getElementById('iframeProxy');
+          
+          // Step 1: put the parameters you want to give to the iframe proxy in the hash
+          var src =  iframeProxy.src.split('#');
+          iframeProxy.src = src[0] + '#' + action;
+          
+          // Step 2: change the size of the iframe proxy to execute his resize event (see proxyA.html)
+          document.getElementById('iframeProxy').width = parseInt(document.getElementById('iframeProxy').width) + 1;
+          
+          return false;
+          
+        }
+      </script>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Domain A</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style type="text/css">
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        background-color: #FFF;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        font-family: Verdana;
+        font-size:12px;
+      }
+      #modalOverlay {
+        background-color: rgba(0,0,0,0.5);
+        position: absolute;
+        z-index:1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+      #modalContainer {
+        position: absolute;
+        z-index:2;
+        margin: -200px 0 0 -200px;
+        top: 50%;
+        left: 50%;
+        padding: 15px;
+        background-color: #FFF;
+        border-radius: 10px;
+        width: 400px;
+        height: 400px;
+      }
+      #modalContainer iframe {
+        width: 400px;
+        height: 400px;
+      }
+    </style>
+    <script type="text/javascript">
+    
+      // This will be called by the iframe proxy to close the modal (see proxyA.html)
+      function closeModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+        document.getElementById('modalContainer').style.display = 'none';
+      }
+      
+    </script>
+  </head>  
+  <body>
+    
+    <p><strong>I am in the domainA and i need to open a modal hosted on domainB. Inside, it will be able to change my body background color and close itself.</strong></p>    
+    
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id tortor erat. Etiam semper justo vel tellus tincidunt at lobortis ligula consectetur. Morbi in velit nibh. In eu lorem eros, sit amet luctus erat. Morbi tempus dolor mauris. Donec vitae quam ut nulla ornare vehicula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras diam nunc, consequat vel fermentum elementum, blandit non tortor. Duis egestas turpis vitae sapien iaculis vitae malesuada neque scelerisque. Aenean eget turpis augue, vitae consectetur dui. Nunc a lacinia erat. Curabitur nec diam libero.
+    </p>
+    <p>
+    Donec eu suscipit nisi. Quisque sagittis velit ut ipsum euismod in fermentum urna faucibus. In eleifend quam pharetra ante fermentum in viverra felis malesuada. Curabitur nisi est, condimentum quis porttitor eget, rhoncus scelerisque neque. Maecenas augue nibh, aliquet a venenatis eu, vestibulum non nunc. Proin ut nibh sem, eget aliquet magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean ac neque libero.
+    </p>
+    <p>
+    Vivamus feugiat, elit at fringilla gravida, ipsum mauris mollis lectus, placerat semper orci nulla vel libero. Sed pharetra, augue quis aliquet pellentesque, neque arcu sagittis orci, ut fermentum tortor justo a nibh. Praesent vitae magna nisl. Donec a urna a dui ullamcorper porttitor id a ligula. Maecenas tempus semper erat id volutpat. Mauris quis elit vitae massa vulputate vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam non quam eu turpis ultrices consectetur ac euismod quam. Ut id est a tellus pretium euismod. Cras congue, mi et pretium eleifend, sapien massa ultrices orci, dictum hendrerit dui ipsum ultrices mi. Aliquam varius adipiscing lectus, sit amet congue orci dapibus et. Sed vitae sapien orci, vel scelerisque erat.
+    </p>
+    <p>
+    Praesent faucibus condimentum diam, et pellentesque nulla ullamcorper nec. Integer eget nibh odio, et ultricies nunc. Maecenas suscipit, velit vel elementum convallis, lectus tellus condimentum tellus, quis laoreet ante arcu eu sem. Nullam risus nulla, consequat et ullamcorper a, mattis ut risus. Nulla vestibulum sagittis velit, at dignissim arcu rhoncus quis. Aenean sed lectus magna, sed scelerisque arcu. Nam eu eros est, eu condimentum lectus. Fusce iaculis ante in leo congue rutrum. Donec nisl diam, dapibus nec elementum id, venenatis dictum neque. Vestibulum tincidunt porttitor augue fringilla fermentum. Nullam tempus pretium sapien eu aliquam. In iaculis, odio nec fringilla dignissim, nulla sem lobortis tellus, vitae tincidunt magna turpis ac metus. Pellentesque auctor est vitae turpis ultrices eu euismod felis consequat. Pellentesque condimentum pellentesque placerat. Pellentesque egestas massa ac nulla pharetra fermentum. Aenean venenatis odio ut nulla malesuada ultricies.
+    </p>
+    <p>
+    Sed felis nisi, volutpat vel vestibulum ut, molestie vitae sem. In euismod nisi sit amet nisl suscipit lobortis. Vestibulum ultricies, enim a placerat auctor, nisi odio fermentum lacus, sed posuere quam odio id ipsum. Integer id urna ac ante malesuada consequat ac a ipsum. Cras vitae lobortis ligula. Proin iaculis sagittis pellentesque. Sed risus neque, vulputate non rutrum at, eleifend id ipsum. Ut sed nunc libero, eu fermentum lorem. Suspendisse et nulla tellus. Sed gravida felis a diam imperdiet condimentum porta dui consequat. Vivamus nulla diam, tempus ac congue vel, bibendum sit amet tortor.
+    </p>
+    
+    <div id="modalOverlay"></div>
+    <div id="modalContainer"><iframe src="http://img.bestofmicro.com/demo/domainB.html" frameborder="0"></iframe></div>
+    
+  </body>
+</html>

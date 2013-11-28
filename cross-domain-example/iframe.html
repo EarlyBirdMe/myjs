@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>iframe: same domain</title>
+<style type="text/css" media="screen">
+body { background: #EEE; font: small sans-serif; margin: 0; padding: 1em; }
+h1 { font-weight: normal; font-size: medium; }
+</style>
+<script type="text/javascript" src="iframe.js"></script>
+</head>
+<body>
+<h1>Child frame, same domain (http://lab.pipwerks.com)</h1>
+<form id="myform" name="myform" onsubmit="return sendMessage();">
+	<label for="send_message"></label>
+	<input type="text" name="message" placeholder="Type your message here" id="message" />
+	<input type="submit" name="btn_submit" value="Send" id="btn_submit">
+</form>
+</body>
+</html>

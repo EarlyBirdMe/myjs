@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>proxy</title>
+<script type="text/javascript">
+var msg = "",
+	pairs = [],
+	querystring = window.location.href.split("?")[1] || false;
+
+//Ensure querystring exists and has valid msg identifier
+if(querystring && querystring.indexOf("msg=") !== -1){ 
+
+	//Ensure all ampersands are single (not entities) so we can split using "&"
+	querystring = querystring.replace(/&amp;/g, "&");    
+
+	//Create an array of value pairs. This gives us flexibility
+	//to add more items to the querystring later.
+	pairs = querystring.split("&");
+
+	//Loop through the pairs and act on each one.
+	for(var i=0; i < pairs.length; i++){
+
+	    //We're currently only looking for the 'msg' value
+	    //We can add more if needed
+	    if(pairs[i].indexOf("msg=") !== -1){
+
+	        //Extract the value from the string by replacing the
+	        //identifier/assignment portion of the string with nothing ""
+	        msg = pairs[i].replace("msg=", "");
+			
+			//Decode string since this is coming from a querystring
+			msg = decodeURI(msg);
+	
+			//decode any quetion marks (not handled by decodeURI)
+			msg = msg.replace(/%3F/g, "?");
+
+	    }
+
+	}
+
+	top.showMessage(msg);
+
+}
+</script>
+</head>
+<body></body>
+</html>
