@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>scriptSandbox</title>
+<script src="scriptSandbox.js"></script>
+</head>
+
+<body>
+<button id="button">new scriptSandbox()</button> <input style="width:15em;" type="text" id="input" value="./test.js" />
+<div id="log" style="color:blue"></div>
+<script>
+// 原理 ：http://www.planeart.cn/?p=1732
+var sandbox = new scriptSandbox();
+
+sandbox.message = function (message) {
+	log(message);
+};
+
+document.getElementById('button').onclick = function () {
+
+	var url = document.getElementById('input').value;
+	
+	sandbox.getJSON(url, function (data) {
+		log(typeof data === 'object' ? data.name : data);
+	}, 'JSONP_TEST');// 一般无需指定第三个参数，因为JSONP回调名会自动生成
+	
+};
+
+var testAval = sandbox.eval(function () {
+	document.title = $test;
+	return $test;
+}, {$test: '测试 sandbox.eval'});
+
+log(testAval);
+
+function log (message) {
+	document.getElementById('log').innerHTML += '<div>' + (+ new Date) + ': ' + message + '</div>';
+};
+
+
+/*
+var weibo = new scriptSandbox();
+weibo.getJSON('http://v.t.qq.com/output/json.php?type=1&name=tangbin&sign=f4d472a44ee98a17122318d6917b60d446adfcff', function (data) {
+	log('weibo data')
+	console.log(data);
+}, 'weiboData');
+*/
+</script>
+</body>
+</html>

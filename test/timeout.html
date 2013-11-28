@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div id="result"></div>
+<script>
+    function sleep(seconds) {
+        var start = new Date().getTime();
+        while ((new Date().getTime() - start) < seconds * 1000);
+    }
+    var limit = 0;
+    var timer1 = setTimeout(function () {
+        if (limit < 1) {
+            limit += 0.02;
+            $('#result').append('<span style="color:#0000aa;">第一个</span>');
+            sleep(1);
+            setTimeout(arguments.callee, 50);
+        }
+    }, 50);
+    var timer2 = setTimeout(function () {
+        $('#result').append('<span style="color:#0000FF;">第6个</span>');
+    }, 5000);
+    sleep(5);
+    var timer3 = setTimeout(function () {
+        $('#result').append('<span style="color:#f89406;">第二个</span>');
+    }, 500);
+    var timer4 = setTimeout(function () {
+        $('#result').append('<span style="color:#000088;">第3个</span>');
+    }, 100);
+    var timer5 = setTimeout(function () {
+        $('#result').append('<span style="color:#c43d20;">第4个</span>');
+    }, 5000);
+    var timer6 = setTimeout(function () {
+        $('#result').append('<span style="color:#0000FF;">第5个</span>');
+    }, 1);
+   sleep(5);
+    console.log(timer1);console.log(timer2);console.log(timer3);console.log(timer4);console.log(timer5);
+    console.log(timer1,timer2,timer3,timer4,timer5);
+</script>
+</body>
+</html>

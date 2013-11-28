@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../jquery/jquery-1.10.2.js"></script>
+    <style>
+        .hh{
+            background-color: #cccccc;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test" class="hh"></div>
+    <script>
+            console.log($('#test').attr('class'));
+            console.log($('.hh')[0].getAttribute('class'));
+//            console.log($('.hh')[0].getAttribute('className'));
+//alert($('#test').attr('class'))
+//alert($('.hh')[0].getAttribute('class'))
+//        alert($('.hh')[0].getAttribute('className'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../jquery/jquery-1.9.1.js"></script>
+</head>
+<body>
+<script>
+    var channel = [{id:1},{id:1222},{id:122},{id:1424},{id:1123},{id:3}]
+    var channelid = 122;
+    function fn(data){
+        console.log(data)
+    }
+    channel.forEach(function (c,i) {
+        if (channelid == c.id) {
+            fn(c);
+            return;
+        }
+        if(i === channel.length-1){
+            fn('hhh');
+        }
+    });
+</script>
+</body>
+</html>
