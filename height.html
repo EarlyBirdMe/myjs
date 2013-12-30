@@ -11,18 +11,29 @@
 </head>
 <body>
   <button id="getp">Get Paragraph Height</button>
+  <button id="getdiv">Get div Height</button>
+  <button id="getsss">set div height</button>
   <button id="getd">Get Document Height</button>
   <button id="getw">Get Window Height</button>
  
-  <div>&nbsp;</div>
+  <div id="res">&nbsp;</div>
+<div id="dd" style="margin-bottom: 10px;border:2px solid #c43d20;padding:20px;">artDialog 可以通过插件支持拖动、抖动效果， alert、confirm、prompt 方法。只需在 art可以通过插件支持拖动、抖动效果可以通过插件支持拖动、抖动效果可以通过插件支持拖动、抖动效果Dialog 之后引用如下文件即可：运动：不要宅在家，多多去运动，你喜欢做哪些运动？运动：不要宅在家，多多去运动，你喜欢做哪些运动？</div>
   <p>
     Sample paragraph to test height
   </p>
 <script>
     function showHeight(ele, h) {
-      $("div").text("The height for the " + ele +
+      $("#res").text("The height for the " + ele +
                     " is " + h + "px.");
     }
+    $("#getdiv").click(function () {
+        showHeight("div", $("#dd").height());
+    });
+    $("#getsss").click(function () {
+        $("#dd").height('auto');
+        $("#dd").height('0');
+    });
+
     $("#getp").click(function () {
       showHeight("paragraph", $("p").height());
     });

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+    <style>
+        .a2{
+            color:blue;
+            margin:0 auto;
+        }
+    </style>
     <script src="qiyi_lib/sea1.2.js"></script>
     <script src="underscore.js"></script>
     <script src="jquery/jquery-1.10.2.js"></script>
@@ -33,29 +40,36 @@
 console.log($('[data-widget-click="con"]'));
 
 
-/*Q.$('#p1').delegate('cl',function(e){
+/*
+Q.$('#p1').delegate('cl',function(e){
     e.event.preventDefault();
     console.log('heheh')
-})
+})*/
 $(document).on('click','.a3',function(e){
     e.preventDefault();
     console.log('aaa111111');
-})*/
+})
 
 $('a').attr('data-name', 'lhc');
 $(document).on('click', '.a1', function (e) {
     e.preventDefault();
     console.log('aaa111111');
 })
+$('#p1').on('click','.a1',function(e){
+    e.preventDefault();
+    console.log('clllllllllllllllllll');
+});
 $('.a1').click(function(e){
     e.preventDefault();
-    alert('sss');
-})
-$('.a1').click(function(e){
-    e.preventDefault();
-    alert('aaaaaaaaaaa');
+    console.log('sss');
 })
 
+$('.a1').click(function(e){
+    e.preventDefault();
+    console.log('aaaaaaaaaaa');
+})
+
+$('.a1').click();
 $('.a3').click(function(){
     console.error(location.href);
     console.log(window.location.href);
